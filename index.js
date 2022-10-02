@@ -57,7 +57,7 @@ async function main() {
     redeemEvents[i].amount /= 1000000000000000000;
     redeemEvents[i].returnAmount /= 1000000000000000000;
     redeemEvents[i].timestamp *= 1000;
-    redeemEvents[i].amountFiat = (await prices.find(el => el[0] > redeemEvents[i].timestamp)[1])*redeemEvents[i].returnAmount;
+    redeemEvents[i].returnAmountFiat = (await prices.find(el => el[0] > redeemEvents[i].timestamp)[1])*redeemEvents[i].returnAmount;
     redeemEvents[i].date = new Date(redeemEvents[i].timestamp).toLocaleString();
   }
   writecsv("./output/redemptions.csv", array2csv(redeemEvents));
