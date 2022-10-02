@@ -1,6 +1,6 @@
 const { execute, ProjectOverviewDocument, PaymentsDocument, RedemptionsDocument, v1PayoutsDocument, v2PayoutsDocument } = require('./.graphclient');
 const { writeFile } = require('fs').promises;
-  const readline = require('readline');
+const readline = require('readline');
 
 async function main() {
 
@@ -27,11 +27,11 @@ async function main() {
   console.log(`Total redeemed: ${overview.totalRedeemed / 1000000000000000000} ETH\n`);
 
   // Fetch ETH prices from project's creation to current time
-  console.log(`Fetching prices from https://api.coingecko.com/api/v3/coins/ethereum/market_chart/range?vs_currency=usd&from=${overview.createdAt}&to=${Math.floor(new Date().getTime() / 1000)} ..\n`);
-  const prices = (await apifetch(`https://api.coingecko.com/api/v3/coins/ethereum/market_chart/range?vs_currency=${Fiat}&from=${overview.createdAt}&to=${Math.floor(new Date().getTime() / 1000)}`)).prices;
+  console.log("Retreiving historical price data . . .");
+  const prices = (await apifetch(`https://api.coingecko.com/api/v3/coins/ethereum/market_chart?vs_currency=${Fiat}&days=max&interval=hourly`)).prices;
 
   // Participants
-  console.log("Calculating participants...");
+  console.log("Evaluating participants . . .");
   for(const i in overview.participants) {
     overview.participants[i].totalPaid /= 1000000000000000000;
     overview.participants[i].balance /= 1000000000000000000;
@@ -40,7 +40,7 @@ async function main() {
   writecsv("./output/participants.csv", array2csv(overview.participants));
 
   // Payments
-  console.log("Calculating payments...");
+  console.log("Retreiving payments . . .");
   let payEvents = (await execute(PaymentsDocument, {Id: Id}, {})).data.projects[0].payEvents;
   for(const i in payEvents) {
     payEvents[i].amount /= 1000000000000000000;
@@ -51,7 +51,7 @@ async function main() {
   writecsv("./output/payments.csv", array2csv(payEvents));
 
   // Redemptions
-  console.log("Calculating redemptions...");
+  console.log("Retreiving redemptions . . .");
   let redeemEvents = (await execute(RedemptionsDocument, {Id: Id}, {})).data.projects[0].redeemEvents;
   for(const i in redeemEvents) {
     redeemEvents[i].amount /= 1000000000000000000;
@@ -63,7 +63,7 @@ async function main() {
   writecsv("./output/redemptions.csv", array2csv(redeemEvents));
 
   // Payouts
-  console.log("Calculating payouts...");
+  console.log("Retreiving payouts . . .");
   let payoutsEvents;
   if (Cv === "2") {
     // Use v2 subgraph schema
