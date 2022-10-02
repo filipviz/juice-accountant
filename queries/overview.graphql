@@ -8,7 +8,7 @@ query ProjectOverview($ProjectId: Int!, $Cv: String!) {
     totalPaid
     totalRedeemed
     metadataUri
-    participants (orderBy: totalPaid, orderDirection: desc){
+    participants (first: 10000, orderBy: totalPaid, orderDirection: desc){
       wallet
       totalPaid
       balance
