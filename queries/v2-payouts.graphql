@@ -1,0 +1,16 @@
+query v2Payouts ($Id: ID!){
+  projects(where: {id: $Id}){
+    distributePayoutsEvents(first: 10000, orderBy: timestamp, orderDirection: desc){
+      timestamp
+      distributedAmount
+      fee
+      beneficiaryDistributionAmount
+      beneficiary
+      splitDistributions{
+        amount
+        beneficiary
+        splitProjectId
+      }
+    }
+  }
+}

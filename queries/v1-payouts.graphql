@@ -1,0 +1,16 @@
+query v1Payouts ($Id: ID!){
+  projects(where: {id: $Id}){
+    tapEvents(first: 10000, orderBy: timestamp, orderDirection: desc){
+      timestamp
+      netTransferAmount
+      govFeeAmount
+      beneficiaryTransferAmount
+      beneficiary
+      distributions {
+        modCut
+        modBeneficiary
+        modProjectId
+      }
+    }
+  }
+}

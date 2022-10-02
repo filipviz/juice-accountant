@@ -1,0 +1,17 @@
+query ProjectOverview($ProjectId: Int!, $Cv: String!) {
+  projects(where: { projectId: $ProjectId, cv: $Cv }) {
+    createdAt
+    handle
+    id
+    owner
+    currentBalance
+    totalPaid
+    totalRedeemed
+    metadataUri
+    participants (orderBy: totalPaid, orderDirection: desc){
+      wallet
+      totalPaid
+      balance
+    }
+  }
+}

@@ -1,0 +1,9 @@
+query Payments ($Id: ID!) { 
+  projects(where: {id: $Id}){
+    payEvents(first: 10000, orderBy: timestamp, orderDirection: desc) {
+      timestamp
+      amount
+      caller
+    }
+  }
+}

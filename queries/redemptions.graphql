@@ -1,0 +1,10 @@
+query Redemptions ($Id: ID!) {
+  projects(where: {id: $Id}){
+    redeemEvents(first: 10000, orderBy: timestamp, orderDirection: desc) {
+      timestamp
+      returnAmount
+      amount
+      caller
+    }
+  }
+}

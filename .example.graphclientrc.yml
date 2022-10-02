@@ -1,0 +1,11 @@
+sources:
+  - name: juicebox
+    handler:
+      graphql:
+        endpoint: https://gateway.thegraph.com/api/[api-key]/subgraphs/id/FVmuv3TndQDNd2BWARV8Y27yuKKukryKXPzvAS5E7htC
+    transforms:
+      - autoPagination:
+          validateSchema: true
+
+documents:
+  - ./queries/*.graphql
