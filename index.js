@@ -1,4 +1,4 @@
-const { execute, ProjectOverviewDocument, PaymentsDocument, RedemptionsDocument, v1PayoutsDocument, v2PayoutsDocument } = require('./.graphclient');
+const { execute, ProjectOverviewDocument, PaymentsDocument, AdditionsDocument, RedemptionsDocument, v1PayoutsDocument, v2PayoutsDocument } = require('./.graphclient');
 const { writeFile } = require('fs').promises;
 const readline = require('readline');
 
@@ -49,6 +49,17 @@ async function main() {
     payEvents[i].date = new Date(payEvents[i].timestamp).toLocaleString();
   }
   writecsv("./output/payments.csv", array2csv(payEvents));
+
+  // Additions to balance
+  console.log("Retreiving additions to balance . . .");
+  let addEvents = (await execute(AdditionsDocument, {Id: Id}, {})).data.projects[0].addToBalanceEvents;
+  for(const i in addEvents) {
+    addEvents[i].amount /= 1000000000000000000;
+    addEvents[i].timestamp *= 1000;
+    addEvents[i].amountFiat = (await prices.find(el => el[0] > addEvents[i].timestamp)[1])*addEvents[i].amount;
+    addEvents[i].date = new Date(addEvents[i].timestamp).toLocaleString();
+  }
+  writecsv("./output/additions.csv", array2csv(addEvents));
 
   // Redemptions
   console.log("Retreiving redemptions . . .");

@@ -1,0 +1,10 @@
+query Additions ($Id: ID!) {
+  projects(where: {id: $Id}){
+    addToBalanceEvents(first: 10000, orderBy: timestamp, orderDirection: desc) {
+      timestamp
+      amount
+      caller
+    }
+  }
+}
+
