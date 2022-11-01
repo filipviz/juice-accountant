@@ -2,7 +2,7 @@ sources:
   - name: juicebox
     handler:
       graphql:
-        endpoint: https://gateway.thegraph.com/api/[api-key]/subgraphs/id/FVmuv3TndQDNd2BWARV8Y27yuKKukryKXPzvAS5E7htC
+        endpoint: https://gateway.thegraph.com/api/<YOUR API KEY>/subgraphs/id/FVmuv3TndQDNd2BWARV8Y27yuKKukryKXPzvAS5E7htC
     transforms:
       - autoPagination:
           validateSchema: true
