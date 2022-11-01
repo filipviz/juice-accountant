@@ -6,6 +6,8 @@ Retreives and processes token holders, payments, redemptions, and distributions,
 
 Powered by [Node.js](https://nodejs.org/en/), the [Juicebox Subgraph](https://info.juicebox.money/dev/subgraph/), [graph-client](https://github.com/graphprotocol/graph-client), and [CoinGecko's v3 API](https://www.coingecko.com/en/api/documentation).
 
+*[Juicebox](https://juicebox.money) helps people run programmable and community funded treasuries from startup to scale, openly on Ethereum.*
+
 ## Installation
 
 First, clone with:
@@ -44,7 +46,7 @@ documents:
 
 Once your `graphclient.yml` is ready, run:
 
-```
+```bash
 npm install
 ```
 
@@ -52,7 +54,7 @@ to install dependencies and build your queries.
 
 ## Run
 
-```
+```bash
 npm run start
 ```
 
