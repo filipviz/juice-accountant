@@ -1,5 +1,5 @@
-query ProjectOverview($ProjectId: Int!, $Cv: String!) {
-  projects(where: { projectId: $ProjectId, cv: $Cv }) {
+query ProjectOverview($ProjectId: Int!, $Pv: String!) {
+  projects(where: { projectId: $ProjectId, pv: $Pv }) {
     createdAt
     handle
     id

@@ -6,11 +6,11 @@ async function main() {
 
   // Get user input
   let ProjectId = +(await question('Project ID? '));
-  let Cv = `${(await  question('Protocol version? '))}`;
+  let Pv = `${(await  question('Protocol version? '))}`;
   let Fiat = `${(await question('Fiat currency? '))}`;
 
   // Grab main project information from Juicebox subgraph
-  const overview = (await execute(ProjectOverviewDocument, { ProjectId: ProjectId, Cv: Cv }, {})).data.projects[0];
+  const overview = (await execute(ProjectOverviewDocument, { ProjectId: ProjectId, Pv: Pv }, {})).data.projects[0];
   const Id = overview.id;
   
   // Get project name and description from IPFS via Juicebox's Pinata gateway
@@ -76,7 +76,7 @@ async function main() {
   // Payouts
   console.log("Retreiving payouts . . .");
   let payoutsEvents;
-  if (Cv === "2") {
+  if (Pv === "2") {
     // Use v2 subgraph schema
     payoutsEvents = (await execute(v2PayoutsDocument, {Id: Id}, {})).data.projects[0].distributePayoutsEvents;
     // Formatting outputs and fetching fiat prices
