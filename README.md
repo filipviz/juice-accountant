@@ -20,10 +20,10 @@ git clone https://github.com/filipvvv/juice-accountant.git
 cd juice-accountant
 ```
 
-Then, create a `.graphclient.yml` file by copying  `.example.graphclient.yml`:
+Then, create a `.graphclientrc.yml` file by copying  `.example.graphclientrc.yml`:
 
 ```bash
-cp .example.graphclient.yml .graphclient.yml
+cp .example.graphclientrc.yml .graphclientrc.yml
 ```
 
 Optionally, you can use the free Juicebox Subgraph endpoint: replace the `endpoint` URL in your `.graphclient.yml` with `https://api.studio.thegraph.com/query/30654/mainnet-dev/0.5.0`. To learn more about configuring Juicebox Subgraph, read [the docs](https://info.juicebox.money/dev/subgraph/).
